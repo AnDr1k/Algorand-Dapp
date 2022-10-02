@@ -40,12 +40,18 @@ def approval_program():
         Approve(),
    ])
 
+    # Resets counter to 0
+    numberReset = Seq([
+        App.globalPut(Bytes("Counter"), Int(0)),
+        Approve(),
+    ])
+
     on_call_method = Txn.application_args[0]
     on_call = Cond(
         [on_call_method == Bytes("minus"), subtraction],
         [on_call_method == Bytes("add"), addition],
         [on_call_method == Bytes("set"), numberSet],
-        
+        [on_call_method == Bytes("reset"), numberReset],
     )
 
     program = Cond(
