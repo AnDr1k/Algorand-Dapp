@@ -260,7 +260,7 @@ const waitForConfirmation = async function (algodclient, txId) {
         const pendingInfo = await algodclient.pendingTransactionInformation(txId).do();
         if (pendingInfo["confirmed-round"] !== null && pendingInfo["confirmed-round"] > 0) {
             //Got the completed Transaction
-            console.log("Transaction " + txId + " confirmed in round " + pendingInfo["confirmed-round"]);
+            //console.log("Transaction " + txId + " confirmed in round " + pendingInfo["confirmed-round"]);
             break;
         }
         lastRound++;
@@ -292,7 +292,7 @@ async function createApp(client, creatorAccount, approvalProgram, clearProgram, 
 
     // Sign the transaction
     let signedTxn = txn.signTxn(creatorAccount.sk);
-    console.log("Signed transaction with txID: %s", txId);
+    
 
     // Submit the transaction
     await client.sendRawTransaction(signedTxn).do();
@@ -302,7 +302,7 @@ async function createApp(client, creatorAccount, approvalProgram, clearProgram, 
     // display results
     let transactionResponse = await client.pendingTransactionInformation(txId).do();
     let appId = transactionResponse['application-index'];
-    console.log("Created new app-id: ", appId);
+    
     return appId;
 }
 
@@ -325,7 +325,7 @@ async function optInApp(client, account, index) {
 
     // Sign the transaction
     let signedTxn = txn.signTxn(account.sk);
-    console.log("Signed transaction with txID: %s", txId);
+    
 
     // Submit the transaction
     await client.sendRawTransaction(signedTxn).do();
@@ -335,7 +335,7 @@ async function optInApp(client, account, index) {
 
     // display results
     let transactionResponse = await client.pendingTransactionInformation(txId).do();
-    console.log("Opted-in to app-id:", transactionResponse['txn']['txn']['apid'])
+    
 }
 
 // call application 
@@ -355,7 +355,7 @@ async function callApp(client, account, index, appArgs) {
 
     // Sign the transaction
     let signedTxn = txn.signTxn(account.sk);
-    console.log("Signed transaction with txID: %s", txId);
+    
 
     // Submit the transaction
     await client.sendRawTransaction(signedTxn).do();
@@ -365,12 +365,12 @@ async function callApp(client, account, index, appArgs) {
 
     // display results
     let transactionResponse = await client.pendingTransactionInformation(txId).do();
-    console.log("Called app-id:", transactionResponse['txn']['txn']['apid'])
+    
     if (transactionResponse['global-state-delta'] !== undefined) {
-        console.log("Global State updated:", transactionResponse['global-state-delta']);
+        
     }
     if (transactionResponse['local-state-delta'] !== undefined) {
-        console.log("Local State updated:", transactionResponse['local-state-delta']);
+        
     }
 }
 
@@ -379,9 +379,9 @@ async function readLocalState(client, account, index) {
     let accountInfoResponse = await client.accountInformation(account.addr).do();
     for (let i = 0; i < accountInfoResponse['apps-local-state'].length; i++) {
         if (accountInfoResponse['apps-local-state'][i].id == index) {
-            console.log("User's local state:");
+            
             for (let n = 0; n < accountInfoResponse['apps-local-state'][i][`key-value`].length; n++) {
-                console.log(accountInfoResponse['apps-local-state'][i][`key-value`][n]);
+                
             }
         }
     }
@@ -392,9 +392,9 @@ async function readGlobalState(client, account, index) {
     let accountInfoResponse = await client.accountInformation(account.addr).do();
     for (let i = 0; i < accountInfoResponse['created-apps'].length; i++) {
         if (accountInfoResponse['created-apps'][i].id == index) {
-            console.log("Application's global state:");
+            
             for (let n = 0; n < accountInfoResponse['created-apps'][i]['params']['global-state'].length; n++) {
-                console.log(accountInfoResponse['created-apps'][i]['params']['global-state'][n]);
+                
             }
         }
     }
@@ -416,7 +416,7 @@ async function updateApp(client, creatorAccount, index, approvalProgram, clearPr
 
     // Sign the transaction
     let signedTxn = txn.signTxn(creatorAccount.sk);
-    console.log("Signed transaction with txID: %s", txId);
+    
 
     // Submit the transaction
     await client.sendRawTransaction(signedTxn).do();
@@ -427,7 +427,7 @@ async function updateApp(client, creatorAccount, index, approvalProgram, clearPr
     // display results
     let transactionResponse = await client.pendingTransactionInformation(txId).do();
     let appId = transactionResponse['txn']['txn'].apid;
-    console.log("Updated app-id: ", appId);
+    
     return appId;
 }
 
@@ -448,7 +448,7 @@ async function closeOutApp(client, account, index) {
 
     // Sign the transaction
     let signedTxn = txn.signTxn(account.sk);
-    console.log("Signed transaction with txID: %s", txId);
+    
 
     // Submit the transaction
     await client.sendRawTransaction(signedTxn).do();
@@ -458,7 +458,7 @@ async function closeOutApp(client, account, index) {
 
     // display results
     let transactionResponse = await client.pendingTransactionInformation(txId).do();
-    console.log("Closed out from app-id:", transactionResponse['txn']['txn']['apid'])
+    
 }
 
 async function deleteApp(client, creatorAccount, index) {
@@ -477,7 +477,7 @@ async function deleteApp(client, creatorAccount, index) {
 
     // Sign the transaction
     let signedTxn = txn.signTxn(creatorAccount.sk);
-    console.log("Signed transaction with txID: %s", txId);
+    
 
     // Submit the transaction
     await client.sendRawTransaction(signedTxn).do();
@@ -488,7 +488,7 @@ async function deleteApp(client, creatorAccount, index) {
     // display results
     let transactionResponse = await client.pendingTransactionInformation(txId).do();
     let appId = transactionResponse['txn']['txn'].apid;
-    console.log("Deleted app-id: ", appId);
+    
     return appId;
 }
 
@@ -508,7 +508,7 @@ async function clearApp(client, account, index) {
 
     // Sign the transaction
     let signedTxn = txn.signTxn(account.sk);
-    console.log("Signed transaction with txID: %s", txId);
+    
 
     // Submit the transaction
     await client.sendRawTransaction(signedTxn).do();
@@ -519,7 +519,7 @@ async function clearApp(client, account, index) {
     // display results
     let transactionResponse = await client.pendingTransactionInformation(txId).do();
     let appId = transactionResponse['txn']['txn'].apid;
-    console.log("Cleared local state for app-id: ", appId);
+    
     return appId;
 }
 

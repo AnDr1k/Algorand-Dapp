@@ -64,7 +64,7 @@ async function closeOutApp(client, account, index) {
 
     // Sign the transaction
     let signedTxn = txn.signTxn(account.sk);
-    console.log("Signed transaction with txID: %s", txId);
+    
 
     // Submit the transaction
     await client.sendRawTransaction(signedTxn).do();
@@ -101,7 +101,7 @@ async function deleteApp(client, creatorAccount, index) {
 
     // Sign the transaction
     let signedTxn = txn.signTxn(creatorAccount.sk);
-    console.log("Signed transaction with txID: %s", txId);
+    
 
     // Submit the transaction
     await client.sendRawTransaction(signedTxn).do();
@@ -112,7 +112,7 @@ async function deleteApp(client, creatorAccount, index) {
     // display results
     let transactionResponse = await client.pendingTransactionInformation(txId).do();
     let appId = transactionResponse['txn']['txn'].apid;
-    console.log("Deleted app-id: ", appId);
+    
     return appId;
 }
 
@@ -140,7 +140,7 @@ async function clearApp(client, account, index) {
 
     // Sign the transaction
     let signedTxn = txn.signTxn(account.sk);
-    console.log("Signed transaction with txID: %s", txId);
+    
 
     // Submit the transaction
     await client.sendRawTransaction(signedTxn).do();
@@ -151,7 +151,7 @@ async function clearApp(client, account, index) {
     // display results
     let transactionResponse = await client.pendingTransactionInformation(txId).do();
     let appId = transactionResponse['txn']['txn'].apid;
-    console.log("Cleared local state for app-id: ", appId);
+    
     return appId;
 }
 
