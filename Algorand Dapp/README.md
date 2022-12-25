@@ -12,13 +12,4 @@ By the end of this tutorial, you will be able to:
 - [Deploy a smart contract](Smart-Contract-Deployment.md)
 - [Create a React frontend to interact with the smart contract](#create-a-react-frontend)
 
----
 
-<center> Written by </center>
-<center><b> ------ </b></center>
-
-<center><b> Ronan Clooney </b></center>
-<center> Blockchain Developer Intern </center>
-<center> <a href="https://deakin-launchpad.com/"> @Deakin Launchpad </a> </center>
-
-<br />
