@@ -22,7 +22,3 @@ By the end of this tutorial, you will be able to:
 <center> <a href="https://deakin-launchpad.com/"> @Deakin Launchpad </a> </center>
 
 <br />
-
-<center><b> Jason Pham </b></center>
-<center> Software Developer </center>
-<center> <a href="https://deakin-launchpad.com/"> @Deakin Launchpad </a> </center>
